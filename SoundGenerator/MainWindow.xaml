@@ -1,0 +1,15 @@
+﻿<Window x:Class="SoundGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoundGenerator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="595" Width="939">
+    <Grid>
+        <Button Name="BtnGenerateWav" VerticalAlignment="Top" Margin="0, 10, 0,0" Content="Generate WAV" Width="100" Height="30" Click="BtnGenerateWav_OnClick"/>
+        <Border Margin="10, 150, 10, 10" BorderBrush="Black" BorderThickness="2">
+            <Canvas Name="CnvGraphics"></Canvas>
+        </Border>
+    </Grid>
+</Window>
