@@ -61,7 +61,7 @@ namespace SoundGenerator
 
         private void BtnGenerateWav_OnClick(object sender, RoutedEventArgs e)
         {
-            double[] data = WavGenerator.CreateWav(Sounds.ToArray());
+            double[] data = WavGenerator.CreateAndPlayWav(Sounds.ToArray());
             DrawGraphic(data);
         }
 

@@ -49,7 +49,7 @@ public class WavGenerator
         return data;
     }
 
-    public static double[] CreateWav(ISound[] sounds)
+    public static double[] CreateAndPlayWav(ISound[] sounds)
     {
         double[] data = new double[NumSamples];
         foreach (var sound in sounds)
@@ -72,11 +72,6 @@ public class WavGenerator
             bw.Write(sampleValue);
         }
 
-        memoryStream.Seek(0, SeekOrigin.Begin);
-        using (var fileStream = new FileStream("file.wav", FileMode.Create))
-        {
-            memoryStream.CopyTo(fileStream);
-        }
         memoryStream.Seek(0, SeekOrigin.Begin);
         new System.Media.SoundPlayer(memoryStream).Play();
         return data;
