@@ -9,7 +9,8 @@ namespace SoundGenerator;
 public class WavGenerator
 {
     public const int SampleRate = 44100;
-    public const int NumSamples = SampleRate * 5;
+    public const int Seconds = 2;
+    public const int NumSamples = SampleRate * Seconds;
 
     private static byte[] CreateWavHeader()
     {
@@ -20,22 +21,6 @@ public class WavGenerator
         int bytesPerSecond = SampleRate * frameSize;
         int dataChunkSize = NumSamples * frameSize;
         int fileSize = 36 + dataChunkSize;
-        
-        /*using var ms = new MemoryStream();
-        using var writer = new BinaryWriter(ms);
-        writer.Write(Encoding.ASCII.GetBytes("RIFF"));
-        writer.Write(fileSize);
-        writer.Write(Encoding.ASCII.GetBytes("WAVE"));
-        writer.Write(Encoding.ASCII.GetBytes("fmt "));
-        writer.Write(16); 
-        writer.Write((short)1); 
-        writer.Write(numChannels);
-        writer.Write(SampleRate);
-        writer.Write(bytesPerSecond); 
-        writer.Write(frameSize);
-        writer.Write(bitsPerSample);
-        writer.Write(Encoding.ASCII.GetBytes("data"));
-        writer.Write(dataChunkSize);*/
         result.AddRange(Encoding.ASCII.GetBytes("RIFF"));
         result.AddRange(BitConverter.GetBytes(fileSize));
         result.AddRange(Encoding.ASCII.GetBytes("WAVE"));

@@ -4,6 +4,7 @@ namespace SoundGenerator.SoundTypes;
 
 public class Noise : ISound
 {
+    public string Name { get; set; } = "Noise";
     public double Frequency { get; set; }
     public double Amplitude { get; set; }
     public double Offset { get; set; } = 0;
@@ -11,5 +12,9 @@ public class Noise : ISound
     public double Generate(double tick)
     {
         return Amplitude * (2 * Random.NextDouble() - 1);
+    }
+    public override string ToString()
+    {
+        return $"Noise {Amplitude}";
     }
 }
