@@ -60,7 +60,11 @@ public class WavGenerator
                 data[i] += temp[i];
             }
         }
+        return data;
+    }
 
+    public static void PlayWav(double[] data)
+    {
         using var memoryStream = new MemoryStream();
         using var bw = new BinaryWriter(memoryStream);
 
@@ -74,6 +78,30 @@ public class WavGenerator
 
         memoryStream.Seek(0, SeekOrigin.Begin);
         new System.Media.SoundPlayer(memoryStream).Play();
-        return data;
+    }
+
+    public static double[] ModulateAmplitude(ISound carried, ISound modulating)
+    {
+        double[] result = new double[NumSamples];
+        for (int i = 0; i < NumSamples; i++)
+        {
+            double tick = (double)i / NumSamples;
+            double modulatingVal = modulating.Generate(tick);
+            result[i] = carried.ModulateAmplitude(tick, modulatingVal);
+        }
+        return result;
+    }
+    
+    public static double[] ModulateFrequency(ISound carried, ISound modulating)
+    {
+        double[] result = new double[NumSamples];
+        carried.Sum = 0;
+        for (int i = 0; i < NumSamples; i++)
+        {
+            double tick = (double)i / NumSamples;
+            double modulatingVal = modulating.Generate(tick);
+            result[i] = carried.ModulateFrequency(tick, NumSamples, modulatingVal);
+        }
+        return result;
     }
 }

@@ -1,6 +1,6 @@
 namespace SoundGenerator;
 
-public interface ISound
+public interface ISound : IModulating
 {
     public string Name { get; set; }
     public double Frequency { get; set; }

@@ -61,15 +61,18 @@ namespace SoundGenerator
 
         private void BtnGenerateWav_OnClick(object sender, RoutedEventArgs e)
         {
-            double[] data = WavGenerator.CreateAndPlayWav(Sounds.ToArray());
+            double[] data = WavGenerator.ModulateAmplitude(Sounds[0], Sounds[1]);
+            //double[] data = WavGenerator.CreateAndPlayWav(Sounds.ToArray());
+            var temp = data.Skip(10000).Take(1000);
+            WavGenerator.PlayWav(data);
             DrawGraphic(data);
         }
 
-        private void DrawGraphic(double[] data)
+        private void DrawGraphic(double[] data) 
         {
             CnvGraphics.Children.Clear();
             int expandRate = 50;
-            for (int i = 0; i < data.Length / 100; i += 10)
+            for (int i = 0; i < data.Length - 10; i += 10)
             {
                 Line line = new Line();
                 line.X1 = (double)i / data.Length * 100 * CnvGraphics.ActualWidth;
