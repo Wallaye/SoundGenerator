@@ -64,8 +64,9 @@
         </Border>
 
         <Button Name="BtnGenerateWav" VerticalAlignment="Top" Margin="370,115,450,0" Content="Play WAV" Width="100" Height="30" Click="BtnGenerateWav_OnClick"/>
+        <Button Name="BtnModulation" VerticalAlignment="Top" Margin="370,60,450,0" Content="Modulation" Width="100" Height="30" Click="BtnModulation_Click"/>
         <Border Margin="10, 150, 10, 10" BorderBrush="Black" BorderThickness="2">
-            <Canvas Name="CnvGraphics"></Canvas>
+            <Canvas MaxWidth="925" Name="CnvGraphics"></Canvas>
         </Border>
     </Grid>
 </Window>

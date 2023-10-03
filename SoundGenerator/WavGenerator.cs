@@ -49,7 +49,7 @@ public class WavGenerator
         return data;
     }
 
-    public static double[] CreateAndPlayWav(ISound[] sounds)
+    public static double[] CreateWav(ISound[] sounds)
     {
         double[] data = new double[NumSamples];
         foreach (var sound in sounds)
@@ -85,7 +85,7 @@ public class WavGenerator
         double[] result = new double[NumSamples];
         for (int i = 0; i < NumSamples; i++)
         {
-            double tick = (double)i / NumSamples;
+            double tick = (double)i / SampleRate;
             double modulatingVal = modulating.Generate(tick);
             result[i] = carried.ModulateAmplitude(tick, modulatingVal);
         }
@@ -98,9 +98,9 @@ public class WavGenerator
         carried.Sum = 0;
         for (int i = 0; i < NumSamples; i++)
         {
-            double tick = (double)i / NumSamples;
+            double tick = (double)i / SampleRate;
             double modulatingVal = modulating.Generate(tick);
-            result[i] = carried.ModulateFrequency(tick, NumSamples, modulatingVal);
+            result[i] = carried.ModulateFrequency(tick, SampleRate, modulatingVal);
         }
         return result;
     }

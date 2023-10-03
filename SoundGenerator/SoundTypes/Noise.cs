@@ -19,12 +19,12 @@ public class Noise : ISound
 
     public double ModulateAmplitude(double tick, double signal)
     {
-        throw new NotImplementedException();
+        return Generate(tick) * (1 + signal);
     }
 
-    public double ModulateFrequency(double tick, int n, double signal)
+    public double ModulateFrequency(int n, double signal)
     {
-        throw new NotImplementedException();
+        return Generate(0);
     }
 
     public override string ToString()

@@ -17,12 +17,14 @@ public class Impulse : ISound
 
     public double ModulateAmplitude(double tick, double signal)
     {
-        throw new System.NotImplementedException();
+        return Generate(tick) * (1 + signal);
     }
 
-    public double ModulateFrequency(double tick, int n, double signal)
+    public double ModulateFrequency(int n, double signal)
     {
-        throw new System.NotImplementedException();
+        var T = 1 / Frequency;
+        Sum += (1 + signal) / n;
+        return (Sum % T) / T < DutyCycle ? Amplitude : -Amplitude;
     }
 
     public override string ToString()

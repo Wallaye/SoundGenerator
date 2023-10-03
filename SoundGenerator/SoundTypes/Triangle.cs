@@ -17,14 +17,14 @@ public class Triangle : ISound
 
     public double ModulateAmplitude(double tick, double signal)
     {
-        throw new NotImplementedException();
+        return Generate(tick) * (1 + signal);
     }
 
-    public double ModulateFrequency(double tick, int n, double signal)
+    public double ModulateFrequency(int n, double signal)
     {
-        throw new NotImplementedException();
+        Sum += 1 + signal;
+        return 2 * Amplitude / Math.PI * Math.Asin(Math.Sin(2 * Math.PI * Frequency * Sum / n + Offset));
     }
-
 
     public override string ToString()
     {

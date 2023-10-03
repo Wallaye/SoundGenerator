@@ -20,10 +20,10 @@ public class Sinusoid : ISound
         return Generate(tick) * (1 + signal);
     }
 
-    public double ModulateFrequency(double tick, int n, double signal)
+    public double ModulateFrequency(int n, double signal)
     {
         Sum += 1 + signal;
-        return Amplitude * Math.Sin(2 * Math.PI * (double)Sum / n + Offset);
+        return Amplitude * Math.Sin(2 * Math.PI * Frequency * (double)Sum / n + Offset);
     }
 
     public override string ToString()

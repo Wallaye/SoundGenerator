@@ -61,8 +61,8 @@ namespace SoundGenerator
 
         private void BtnGenerateWav_OnClick(object sender, RoutedEventArgs e)
         {
-            double[] data = WavGenerator.ModulateAmplitude(Sounds[0], Sounds[1]);
-            //double[] data = WavGenerator.CreateAndPlayWav(Sounds.ToArray());
+            //double[] data = WavGenerator.ModulateAmplitude(Sounds[0], Sounds[1]);
+            double[] data = WavGenerator.CreateWav(Sounds.ToArray());
             var temp = data.Skip(10000).Take(1000);
             WavGenerator.PlayWav(data);
             DrawGraphic(data);
@@ -72,13 +72,14 @@ namespace SoundGenerator
         {
             CnvGraphics.Children.Clear();
             int expandRate = 50;
-            for (int i = 0; i < data.Length - 10; i += 10)
+            int step = 5;
+            for (int i = 0; i < data.Length - step; i += step)
             {
                 Line line = new Line();
-                line.X1 = (double)i / data.Length * 100 * CnvGraphics.ActualWidth;
-                line.X2 = (double)(i + 10) / data.Length * 100 * CnvGraphics.ActualWidth;
+                line.X1 = (double)i / data.Length * 20 * CnvGraphics.ActualWidth;
+                line.X2 = (double)(i + step) / data.Length * 20 * CnvGraphics.ActualWidth;
                 line.Y1 = data[i] * expandRate + CnvGraphics.ActualHeight / 2;
-                line.Y2 = data[i + 10] * expandRate + CnvGraphics.ActualHeight / 2;
+                line.Y2 = data[i + step] * expandRate + CnvGraphics.ActualHeight / 2;
                 line.Stroke = new SolidColorBrush(Colors.Black);
                 line.StrokeThickness = 1;
                 CnvGraphics.Children.Add(line);
@@ -146,6 +147,12 @@ namespace SoundGenerator
                     DutyCycleTextBox.Text = s.DutyCycle.ToString();
                 }
             }
+        }
+
+        private void BtnModulation_Click(object sender, RoutedEventArgs e)
+        {
+            var modWnd = new ModulationWindow();
+            modWnd.ShowDialog();
         }
     }
 }
