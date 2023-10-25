@@ -12,7 +12,7 @@ public class Impulse : ISound
     public double Generate(double tick)
     {
         double T = 1 / Frequency;
-        return (tick % T) / T < DutyCycle ? Amplitude : -Amplitude;
+        return (tick % T) / T < 1 / DutyCycle ? Amplitude : -Amplitude;
     }
 
     public double ModulateAmplitude(double tick, double signal)
@@ -24,7 +24,7 @@ public class Impulse : ISound
     {
         var T = 1 / Frequency;
         Sum += (1 + signal) / n;
-        return (Sum % T) / T < DutyCycle ? Amplitude : -Amplitude;
+        return (Sum % T) / T < 1 / DutyCycle ? Amplitude : -Amplitude;
     }
 
     public override string ToString()

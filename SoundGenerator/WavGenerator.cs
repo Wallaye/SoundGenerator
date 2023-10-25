@@ -9,7 +9,7 @@ namespace SoundGenerator;
 public class WavGenerator
 {
     public const int SampleRate = 44100;
-    public const int Seconds = 2;
+    public const int Seconds = 5;
     public const int NumSamples = SampleRate * Seconds;
 
     private static byte[] CreateWavHeader()
@@ -100,7 +100,7 @@ public class WavGenerator
         {
             double tick = (double)i / SampleRate;
             double modulatingVal = modulating.Generate(tick);
-            result[i] = carried.ModulateFrequency(tick, SampleRate, modulatingVal);
+            result[i] = carried.ModulateFrequency(SampleRate, modulatingVal);
         }
         return result;
     }
